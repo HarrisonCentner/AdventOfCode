@@ -1,0 +1,8 @@
+dist
+dist-*
+*.o
+*.hi
+*.hie
+*.chi
+*.swp
+*.txt

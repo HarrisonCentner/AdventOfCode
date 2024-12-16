@@ -1,0 +1,26 @@
+cabal-version:   2.4
+name:            simple-haskell-project
+version:         0
+tested-with:     GHC ==8.6.3 || ==8.8.3 || ==8.10.5
+description:     A simple Haskell project
+author:          harrisoncentner
+maintainer:      harrisoncentner - harrisoncentner@email.com
+copyright:       2024-12-09 harrisoncentner
+build-type:      Simple
+extra-doc-files: 
+  README.md
+license:         NONE
+  
+common common-options
+  build-depends:      base >=4.9 && <5
+  default-language:   Haskell2010
+  default-extensions: 
+  ghc-options:
+
+executable simple-haskell-project-exe
+  import:         common-options
+  hs-source-dirs: src
+  main-is:        Main.hs
+  ghc-options:    -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+     unordered-containers
