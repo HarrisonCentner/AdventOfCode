@@ -1,5 +1,5 @@
 {
-  description = "A simple Haskell project";
+  description = "Advent of Code";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
@@ -10,10 +10,10 @@
         haskell = prev.haskell // {
           packageOverrides = hfinal: hprev:
             prev.haskell.packageOverrides hfinal hprev // {
-              simple-haskell-project = hfinal.callCabal2nix "simple-haskell-project" ./. { };
+              aoc = hfinal.callCabal2nix "aoc" ./. { };
             };
         };
-        simple-haskell-project = final.haskell.lib.compose.justStaticExecutables final.haskellPackages.simple-haskell-project;
+        aoc = final.haskell.lib.compose.justStaticExecutables final.haskellPackages.aoc;
       };
       perSystem = system:
         let
@@ -23,7 +23,7 @@
         {
           devShell = hspkgs.shellFor {
             withHoogle = true;
-            packages = p: [ p.simple-haskell-project ];
+            packages = p: [ p.aoc ];
             buildInputs = [
               hspkgs.cabal-install
               hspkgs.haskell-language-server
@@ -32,7 +32,7 @@
               pkgs.bashInteractive
             ];
           };
-          defaultPackage = pkgs.simple-haskell-project;
+          defaultPackage = pkgs.aoc;
         };
     in
     { inherit overlay; } // 

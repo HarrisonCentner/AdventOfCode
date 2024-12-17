@@ -1,5 +1,7 @@
-{-# LANGUAGE TupleSections #-}
-module Main where
+module AOC.Day01 
+  ( day01,
+  )
+    where
 
 import Data.List
 import System.IO
@@ -8,9 +10,9 @@ import Data.Bifunctor (bimap)
 import qualified Data.HashMap.Strict as HM
 
 
-main :: IO ()
-main = do
-  withFile "src/test.txt" ReadMode $ \h -> do 
+day01 :: FilePath -> IO ()
+day01 file = do
+  withFile file ReadMode $ \h -> do 
     lineNums <- lines <$> hGetContents h
     let [xs, ys] = transpose $ map words lineNums
     let (m1, m2) = join bimap (sort . map read) (xs, ys)
